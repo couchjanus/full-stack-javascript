@@ -3,46 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <title>Getting Started with JavaScript</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     body { padding: 30px; }
-
-    .nav li{
-        display: inline-block;
+    img {
+        width: 50vw;
+        max-width: 100%;
+        margin: 0 auto;
     }
-    .nav li a {
-        text-decoration: none;
-        color: white;
-        background:red;
-        padding: 1em;
-    }
-
+    
   </style>
 </head>
 
 <body>
 
- <h1>Gallery</h1>
+<h1>Slideshow</h1>
 
-<ul class="nav">
-      <li><a href="#" id="img1" onclick="changeImg(1);">Image 1</a></li>
-      <li><a href="#" id="img2" onclick="changeImg(2);">Image 2</a></li>
-      <li><a href="#" id="img3" onclick="changeImg(3);">Image 3</a></li>
-</ul>
+<div class="container">
+  <div class="row">
 
-  <div id="pic">
-      <img src="images/1.jpg" />
-  </div>
+  <img class="slides" src="images/1.jpg">
+  <img class="slides" src="images/2.jpg">
+  <img class="slides" src="images/3.jpg">
+  <img class="slides" src="images/4.jpg">
+
+  <button class="btn pull-left">&#10094;</button>
+  <button class="btn pull-right">&#10095;</button>
 
 </div>
+</div>
 
-<script>
-    function changeImg(i){
-         var pic = document.getElementById("pic");
-         pic.innerHTML = '<img src="images/'+i+'.jpg" />';
-        }
-</script>
 
+  <!-- start javascript -->
+  <script>
+
+
+  window.onload = function() {
+
+    console.log( 'Документ и все ресурсы загружены' );
+
+    var slideIndex = 1;
+    
+    showDivs(slideIndex);
+
+    document.getElementsByClassName("pull-left")[0].onclick =
+      function(){
+        plusDivs(-1);
+      };
+    
+    document.getElementsByClassName("pull-right")[0].onclick =
+      function(){
+        plusDivs(1);
+      };
+
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("slides");
+      if (n > x.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {
+         x[i].style.display = "none";  
+      }
+      x[slideIndex-1].style.display = "block";  
+    }
+  
+  };
+    
+  </script>
 </body>
 </html>

@@ -3,46 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Getting Started with JavaScript</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     body { padding: 30px; }
+    img {
+        width: 30vw;
+        max-width: 100%;
+    }
+    
   </style>
 </head>
 
 <body>
 
+<h1>Slideshow</h1>
+
+<div class="container">
+  <div class="row">
+
+  <img class="slides" src="images/1.jpg">
+  <img class="slides" src="images/2.jpg">
+  <img class="slides" src="images/3.jpg">
+  <img class="slides" src="images/4.jpg">
+
+  <button class="btn pull-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="btn pull-right" onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+</div>
+
+
   <!-- start javascript -->
   <script>
-    let a   = 10;
-    let b   = 3;
-    let c   = 15;
-    const d = '5';
-    let e   = 'my name';
-    const f = 'is chris';
+  window.onload = function() {
+    console.log( 'Документ и все ресурсы загружены' );
 
-    console.group('Addition');
-      console.log(a + b); // 13
-      console.log(a + d); // 105
-      console.log(e + ' ' + f);
-      console.log(e += ' is the batman');
-    console.groupEnd();
+    var x = document.getElementsByClassName("slides");
+    console.log("slides.length = ", x.length);
+  };
 
-    console.group('Multiplication');
-      console.log(a * 3); // 30
-      console.log(a * b); // 30
-      console.log(b * c); // 45
-    console.groupEnd();
-
-    a++;
-    b--;
-    --b;
-    c += a;
-    console.group('Incrementing');
-      console.log(a); // 11    
-      console.log(b); // 1
-      console.log(c); // 25
-    console.groupEnd();
     
   </script>
 </body>

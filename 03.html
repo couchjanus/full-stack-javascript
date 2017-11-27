@@ -3,64 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <title>Getting Started with JavaScript</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     body { padding: 30px; }
+    img {
+        width: 30vw;
+        max-width: 100%;
+    }
+    
   </style>
 </head>
 
 <body>
 
+<h1>Slideshow</h1>
+
+<div class="container">
+  <div class="row">
+
+  <img class="slides" src="images/1.jpg">
+  <img class="slides" src="images/2.jpg">
+  <img class="slides" src="images/3.jpg">
+  <img class="slides" src="images/4.jpg">
+
+  <button class="btn pull-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="btn pull-right" onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+</div>
+
+
   <!-- start javascript -->
   <script>
-    const original = 'chris';
-    const clone    = 'CHRIS';
+  window.onload = function() {
+    console.log( 'Документ и все ресурсы загружены' );
 
-    console.groupCollapsed('String');
-      console.log(original == 'chris'); // true
-      console.log(original == clone); // false
-      console.log(original == clone.toLowerCase()); // true
-    console.groupEnd();
+    var x = document.getElementsByClassName("slides");
+    console.log("slides.length = ", x.length);
 
-    const num1 = 10;
-    const num2 = '10';
-
-    console.groupCollapsed('Numbers');
-      console.log(num1 == num2); // true 
-      console.log(num1 === num2); // false
-      console.log(num1 != num2); // false
-      console.log(num1 !== num2); // true
-    console.groupEnd();
-
-    let what; // undefined
-    let thing = null; 
-
-    console.groupCollapsed('Booleans');
-      console.log(Boolean(what)); // false
-      console.log(Boolean(thing)); // false
-      console.log(Boolean(num1)); // true
-      console.log(Boolean(num2)); // true
-      console.log(Boolean({})); // true
-      console.log(Boolean([])); // true
-    console.groupEnd(); 
-
-    const firstArr  = [1, 2, 3];
-    const secondArr = [1, 2, 3];
-    const firstObj  = { color: 'red' };
-    const secondObj = { color: 'red' };
-
-    console.groupCollapsed('Objects and Arrays');
-      console.log(firstArr === secondArr);
-      console.log(firstObj === secondObj);
-    console.groupEnd();
-
-    console.group('And Or');
-      console.log(Boolean('blah') && Boolean('thing')); // true
-      console.log(Boolean('blah') && Boolean('')); // false
-      console.log(Boolean('blah') || Boolean('')); // true
-      console.log(Boolean('') || Boolean('')); // false
-    console.groupEnd();
+    for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+    }
+  };
     
   </script>
 </body>

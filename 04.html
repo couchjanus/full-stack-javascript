@@ -3,80 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <title>Getting Started with JavaScript</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     body { padding: 30px; }
+    img {
+        width: 30vw;
+        max-width: 100%;
+    }
+    
   </style>
 </head>
 
 <body>
-<div class="dogs-list"></div>
+
+<h1>Slideshow</h1>
+
+<div class="container">
+  <div class="row">
+
+  <img class="slides" src="images/1.jpg">
+  <img class="slides" src="images/2.jpg">
+  <img class="slides" src="images/3.jpg">
+  <img class="slides" src="images/4.jpg">
+
+  <button class="btn pull-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="btn pull-right" onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+</div>
+
+
   <!-- start javascript -->
   <script>
-    /*
-    const name     = prompt('What is your name?');
-    const username = 'chrisoncode';
-    */
+  window.onload = function() {
+    console.log( 'Документ и все ресурсы загружены' );
 
-    // if
-    // if (name == 'nick' || name == 'chris') {
-    //   alert('Hello!');
-    // } else if (name == 'holly') {
-    //   console.log('this is holly');
-    // } else {
-    //   console.log('not nick');
-    // }
+    var x = document.getElementsByClassName("slides");
+    console.log("slides.length = ", x.length);
 
-    // for loop
-    const dogsList = document.querySelector('.dogs-list');
-    const dogs = [
-      { name: 'bruce', type: 'chihuahua' },
-      { name: 'chance', type: 'bernese' }
-    ];
+    var i;
+    var slideIndex;
+    var n = 5;
 
-    // for (let i = 0; i < dogs.length; i++) {
-    //   // grab the dog
-    //   const dog         = dogs[i];
-    //   const dogData     = document.createElement('div');
-    //   dogData.classList.add('jumbotron', 'text-center');
-    //   dogData.innerText = `${dog.name} is a ${dog.type}`;
-    //   dogsList.appendChild(dogData);
-    // }
+    if (n > x.length) {
+      slideIndex = 1;
+    }    
 
-    // while loop
-    // let i = 0;
-    // while (i < dogs.length) {
-    //   // grab the dog
-    //   const dog         = dogs[i];
-    //   const dogData     = document.createElement('div');
-    //   dogData.classList.add('jumbotron', 'text-center');
-    //   dogData.innerText = `${dog.name} is a ${dog.type}`;
-    //   dogsList.appendChild(dogData);
-
-    //   i++;
-    // }
-
-    // do while loop
-    // let i = 0;
-    // do {
-    //   // grab the dog
-    //   const dog         = dogs[i];
-    //   const dogData     = document.createElement('div');
-    //   dogData.classList.add('jumbotron', 'text-center');
-    //   dogData.innerText = `${dog.name} is a ${dog.type}`;
-    //   dogsList.appendChild(dogData);
-
-    //   i++;
-    // } while (i < dogs.length);
-
-    // for...of iterator
-    for (let dog of dogs) {
-      const dogData     = document.createElement('div');
-      dogData.classList.add('jumbotron', 'text-center');
-      dogData.innerText = `${dog.name} is a ${dog.type}`;
-      dogsList.appendChild(dogData);
+    if (n < 1) {
+      slideIndex = x.length;
     }
+
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+
+    x[slideIndex-1].style.display = "block";  
+
+  };
     
   </script>
 </body>

@@ -3,57 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title>Getting Started with JavaScript</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     body { padding: 30px; }
+    img {
+        width: 30vw;
+        max-width: 100%;
+    }
+    
   </style>
 </head>
 
 <body>
 
- <div class="jumbotron text-center">
-    <button type="button" class="btn btn-danger" onclick="saySomething('this is the first button')">
-      My Button
-    </button>
-    <button type="button" class="btn btn-danger" onclick="saySomething('this is the second button')">
-      My 2nd Button
-    </button>
-  </div>
+<h1>Slideshow</h1>
+
+<div class="container">
+  <div class="row">
+
+  <img class="slides" src="images/1.jpg">
+  <img class="slides" src="images/2.jpg">
+  <img class="slides" src="images/3.jpg">
+  <img class="slides" src="images/4.jpg">
+
+  <button class="btn pull-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="btn pull-right" onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+</div>
+
 
   <!-- start javascript -->
   <script>
-    
 
-    function saySomething(message = 'goodbye', whisper = false) {
-      if (whisper) {
-        console.log(`%c${message}`, 'font-size:5px');
-      } else {
-        console.log(message);
+
+  window.onload = function() {
+
+    console.log( 'Документ и все ресурсы загружены' );
+    
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("slides");
+      if (n > x.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {
+         x[i].style.display = "none";  
       }
+      x[slideIndex-1].style.display = "block";  
     }
-
-    saySomething('hello', true);
-    saySomething('my name is chris', true);
-    saySomething();
-
-    // function squared(a) {
-    //   return a * a;
-    // }
-
-    // const newSquared = squared(3);
-    // console.log(newSquared);
+  
+  };
     
-    const squared = (a) => {
-      return a * a;
-    }
-    const otherSquared = squared;
-
-    punch();
-
-    function punch() {
-      console.log('punch here!');
-    }
   </script>
 </body>
 </html>
