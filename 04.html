@@ -1,67 +1,496 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Getting Started with JavaScript</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <style>
-    body { padding: 30px; }
-    img {
-        width: 30vw;
-        max-width: 100%;
-    }
+ <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+    <!-- Basic Page Needs
+    ================================================== -->
+      <meta charset="utf-8">
+
+      
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      <link rel="icon" href="./favicon.ico">
+        <!-- Mobile Specific Metas
+    ================================================== -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <title>Shopaholic Template</title>
+
+      <!-- CSS
+      ================================================== -->
+
+      <!-- Bootstrap core CSS -->
+      <link href="./css/bootstrap.min.css" rel="stylesheet">
+      <!-- FontAwesome -->
+      <link rel="stylesheet" href="css/font-awesome.min.css"/>
+      
+      <!-- Custom styles for this template -->
+      {# <link rel="stylesheet" href="css/owl.carousel.css"/>
+      <link rel="stylesheet" href="css/owl.theme.css"/> #}
+      <link href="./css/styles.css" rel="stylesheet">
     
-  </style>
-</head>
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500' rel='stylesheet' type='text/css'>
+    </head>
 
-<body>
+ <body data-spy="scroll" data-target=".navbar-fixed-top">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-<h1>Slideshow</h1>
+  <header id="header" class="navbar-fixed-top navbar-inverse video-menu" role="banner">
+    <div class="container">
+      <!-- <div class="row"> -->
+                 <div class="navbar-header ">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                                <img src="images/logo.png" alt="" class="img-responsive">
+                        </a>
+                 </div><!--Navbar header End-->
+                  <nav class="collapse navbar-collapse navigation" id="navbar-collapse-1" role="navigation">
+                        <ul class="nav navbar-nav navbar-right ">
+                            <li class="active"> <a href="#home" >Home </a></li>
+                            <li><a href="#service"  >Catalog</a> </li>
+                            <li><a href="#about" >About Us </a> </li>
+                            <li><a href="#blog" >Blog</a> </li>
+                            <li><a href="#contact" >Contact Us</a> </li>
+                            <li id="cart-trigger" class=""><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                     </nav>
+    </div><!-- /.container-fluid -->
+  </header>
+<!-- product Start -->
+<section class="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="feature_header text-center">
+                    <h3 class="feature_title">Our <b>Cat Members</b></h3>
+                    <h4 class="feature_sub">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h4>
+                    <div class="divider"></div>
+                </div>
+            </div>  <!-- Col-md-12 End -->
+<div class="product-items">
 
-<div class="container">
-  <div class="row">
+<div class="contentItem text-center" productId="">
+    <div class="singleMember">
+          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <div class="icon">
+            <div class="icon_bg"></div>
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </div>
+          <div class="image">
+            <img src="images/1.jpg" alt="book" width="260" />
+          </div>
+          <div class="menu">
+            <div class="price">
+              $9.99
+            </div>
+            <div class="buy">
+              Buy now!
+            </div>
+            <div class="detail">
+              Detail
+            </div>
 
-  <img class="slides" src="images/1.jpg">
-  <img class="slides" src="images/2.jpg">
-  <img class="slides" src="images/3.jpg">
-  <img class="slides" src="images/4.jpg">
+            <div class="howmany">
+              <div class="quantity-input">
+                <input class="minus btn" type="button" value="-">
+                <input class="input-text quantity text" value="3" size="4">
+                <input class="plus btn" type="button" value="+">
+              </div>
+            </div>
+            <div class="cancel">
+              Cancel
+            </div>
+            <div class="addcart">
+              Add to Cart!
+            </div>
+          </div>
+     </div>
+     <div class="card_back">
+          <i class="fa fa-check fa-4x"></i>
+          <p>Success!</p>
+     </div>
+  </div>  <!-- item wrapper end -->
+<div class="contentItem text-center" productId="">
+    <div class="singleMember">
+          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <div class="icon">
+            <div class="icon_bg"></div>
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </div>
+          <div class="image">
+            <img src="images/1.jpg" alt="book" width="260" />
+          </div>
+          <div class="menu">
+            <div class="price">
+              $9.99
+            </div>
+            <div class="buy">
+              Buy now!
+            </div>
+            <div class="detail">
+              Detail
+            </div>
 
-  <button class="btn pull-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="btn pull-right" onclick="plusDivs(1)">&#10095;</button>
+            <div class="howmany">
+              <div class="quantity-input">
+                <input class="minus btn" type="button" value="-">
+                <input class="input-text quantity text" value="3" size="4">
+                <input class="plus btn" type="button" value="+">
+              </div>
+            </div>
+            <div class="cancel">
+              Cancel
+            </div>
+            <div class="addcart">
+              Add to Cart!
+            </div>
+          </div>
+     </div>
+     <div class="card_back">
+          <i class="fa fa-check fa-4x"></i>
+          <p>Success!</p>
+     </div>
+  </div>  <!-- item wrapper end -->
+<div class="contentItem text-center" productId="">
+    <div class="singleMember">
+          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <div class="icon">
+            <div class="icon_bg"></div>
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </div>
+          <div class="image">
+            <img src="images/1.jpg" alt="book" width="260" />
+          </div>
+          <div class="menu">
+            <div class="price">
+              $9.99
+            </div>
+            <div class="buy">
+              Buy now!
+            </div>
+            <div class="detail">
+              Detail
+            </div>
 
-</div>
-</div>
+            <div class="howmany">
+              <div class="quantity-input">
+                <input class="minus btn" type="button" value="-">
+                <input class="input-text quantity text" value="3" size="4">
+                <input class="plus btn" type="button" value="+">
+              </div>
+            </div>
+            <div class="cancel">
+              Cancel
+            </div>
+            <div class="addcart">
+              Add to Cart!
+            </div>
+          </div>
+     </div>
+     <div class="card_back">
+          <i class="fa fa-check fa-4x"></i>
+          <p>Success!</p>
+     </div>
+  </div>  <!-- item wrapper end -->
+<div class="contentItem text-center" productId="">
+    <div class="singleMember">
+          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <div class="icon">
+            <div class="icon_bg"></div>
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </div>
+          <div class="image">
+            <img src="images/1.jpg" alt="book" width="260" />
+          </div>
+          <div class="menu">
+            <div class="price">
+              $9.99
+            </div>
+            <div class="buy">
+              Buy now!
+            </div>
+            <div class="detail">
+              Detail
+            </div>
+
+            <div class="howmany">
+              <div class="quantity-input">
+                <input class="minus btn" type="button" value="-">
+                <input class="input-text quantity text" value="3" size="4">
+                <input class="plus btn" type="button" value="+">
+              </div>
+            </div>
+            <div class="cancel">
+              Cancel
+            </div>
+            <div class="addcart">
+              Add to Cart!
+            </div>
+          </div>
+     </div>
+     <div class="card_back">
+          <i class="fa fa-check fa-4x"></i>
+          <p>Success!</p>
+     </div>
+  </div>  <!-- item wrapper end -->
+<div class="contentItem text-center" productId="">
+    <div class="singleMember">
+          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <div class="icon">
+            <div class="icon_bg"></div>
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </div>
+          <div class="image">
+            <img src="images/1.jpg" alt="book" width="260" />
+          </div>
+          <div class="menu">
+            <div class="price">
+              $9.99
+            </div>
+            <div class="buy">
+              Buy now!
+            </div>
+            <div class="detail">
+              Detail
+            </div>
+
+            <div class="howmany">
+              <div class="quantity-input">
+                <input class="minus btn" type="button" value="-">
+                <input class="input-text quantity text" value="3" size="4">
+                <input class="plus btn" type="button" value="+">
+              </div>
+            </div>
+            <div class="cancel">
+              Cancel
+            </div>
+            <div class="addcart">
+              Add to Cart!
+            </div>
+          </div>
+     </div>
+     <div class="card_back">
+          <i class="fa fa-check fa-4x"></i>
+          <p>Success!</p>
+     </div>
+  </div>  <!-- item wrapper end -->
+<div class="contentItem text-center" productId="">
+    <div class="singleMember">
+          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <div class="icon">
+            <div class="icon_bg"></div>
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </div>
+          <div class="image">
+            <img src="images/1.jpg" alt="book" width="260" />
+          </div>
+          <div class="menu">
+            <div class="price">
+              $9.99
+            </div>
+            <div class="buy">
+              Buy now!
+            </div>
+            <div class="detail">
+              Detail
+            </div>
+
+            <div class="howmany">
+              <div class="quantity-input">
+                <input class="minus btn" type="button" value="-">
+                <input class="input-text quantity text" value="3" size="4">
+                <input class="plus btn" type="button" value="+">
+              </div>
+            </div>
+            <div class="cancel">
+              Cancel
+            </div>
+            <div class="addcart">
+              Add to Cart!
+            </div>
+          </div>
+     </div>
+     <div class="card_back">
+          <i class="fa fa-check fa-4x"></i>
+          <p>Success!</p>
+     </div>
+  </div>  <!-- item wrapper end -->            
+            </div>
+        </div>
+    </div> <!-- Conatiner product end -->
+</section>  <!-- Section product End -->
+<!-- Our product End -->
+<div class="clearfix"></div>
+
+<!-- Footer Area Start -->
+
+<footer id="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Main Menu</h3>
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="#about">Home</a></li>
+                            <li><a href="#service">Service</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Useful Links</h3>
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#"> inventore natus ullam eum</a></li>
+                            <li><a href="#">consectetur adipisicing elit.</a></li>
+                            <li><a href="#">Frequently Asked Questions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Contact us</h3>
+                    <div class="footer_menu_contact">
+                        <ul>
+                            <li> <i class="fa fa-home"></i>
+                                <span> National Aviation University Kosmonavta KomarovaAve, 1 Kyiv </span></li>
+                            <li><i class="fa fa-globe"></i>
+                                <span> +099-12345678</span></li>
+                            <li><i class="fa fa-phone"></i>
+                                <span> info@gmail.com</span></li>
+                            <li><i class="fa fa-map-marker"></i>
+                            <span> www.my.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Tags</h3>
+                    <div class="footer_menu tags">
+                        <a href="#"> Design</a>
+                        <a href="#"> User Interface</a>
+                        <a href="#"> Graphics</a>
+                        <a href="#"> Web Design</a>
+                        <a href="#"> Development</a>
+                        <a href="#"> Asp.net</a>
+                        <a href="#"> Bootstrap</a>
+                        <a href="#"> Joomla</a>
+                        <a href="#"> SEO</a>
+                        <a href="#"> Wordepress</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer_bottom">
+                        <p class="text-block"> &copy; Copyright reserved to <span>Janus </span></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer_mid pull-right">
+                        <ul class="social-contact list-inline">
+                            <li> <a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-google-plus"></i> </a></li>
+                            <li><a href="#"> <i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"> <i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Area End -->
+<div id="shadow-layer"></div>
+
+    <div id="cart">
+        <h2>Cart</h2>
+        <ul class="cart-items">
+            <li>
+                <span class="qty">1x</span> <span class="product-name">Product Name</span>
+                <div class="price">$9.99</div>
+                <a href="#0" class="item-remove img-replace"></a>
+            </li>
+
+            <li>
+                <span class="qty">2x</span> Product Name
+                <div class="price">$19.98</div>
+                <a href="#" class="item-remove img-replace"></a>
+            </li>
+
+            <li>
+                <span class="qty">1x</span> Product Name
+                <div class="price">$9.99</div>
+                <a href="#" class="item-remove img-replace"></a>
+            </li>
+        </ul> <!-- cd-cart-items -->
+
+        <div class="cart-total">
+            <p>Total <span>$39.96</span></p>
+        </div> <!-- cd-cart-total -->
+
+        <a href="#" class="checkout-btn">Checkout</a>
+
+        <p class="go-to-cart"><a href="#">Go to cart page</a></p>
+    </div> <!-- cd-cart -->
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+    <script src="./js/app.js"></script>
 
 
-  <!-- start javascript -->
-  <script>
-  window.onload = function() {
-    console.log( 'Документ и все ресурсы загружены' );
+   <script type="text/javascript">
+   
+   function toggle_panel(panel, background_layer) {
+            if (panel.classList.contains('speed-in')) {
+                panel.classList.remove('speed-in');
+                background_layer.classList.remove('is-visible');
+            } else {
+                panel.classList.add('speed-in');
+                background_layer.classList.add('is-visible');
+            }
+     }
+   
+   document.addEventListener("DOMContentLoaded", ready);
 
-    var x = document.getElementsByClassName("slides");
-    console.log("slides.length = ", x.length);
+    function ready() {
+      document.getElementById("cart-trigger").addEventListener('click', function () {
+            toggle_panel(document.getElementById("cart"), document.getElementById("shadow-layer"));
+        });
 
-    var i;
-    var slideIndex;
-    var n = 5;
-
-    if (n > x.length) {
-      slideIndex = 1;
-    }    
-
-    if (n < 1) {
-      slideIndex = x.length;
     }
+   
+   </script>
 
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
-    }
-
-    x[slideIndex-1].style.display = "block";  
-
-  };
-    
-  </script>
 </body>
+
 </html>

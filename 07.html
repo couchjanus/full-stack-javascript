@@ -1,76 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Getting Started with JavaScript</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <style>
-    body { padding: 30px; }
-    img {
-        width: 50vw;
-        max-width: 100%;
-        margin: 0 auto;
-    }
+ <!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <link rel="icon" href="./favicon.ico">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Shopaholic Template</title>
+      <link href="./css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      
+      <link href="./css/styles.css" rel="stylesheet">
     
-  </style>
-</head>
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500' rel='stylesheet' type='text/css'>
+    </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar-fixed-top">
 
-<h1>Slideshow</h1>
+<div class="product-items">
+  <div class="contentItem text-center" productId="">
+    <div class="singleMember">
+          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <div class="icon">
+            <div class="icon_bg"></div>
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </div>
+          <div class="image">
+            <img src="images/1.jpg" alt="book" width="260" />
+          </div>
+          <div class="menu">
+            <div class="price">
+              $9.99
+            </div>
+            <div class="buy">
+              Buy now!
+            </div>
+            <div class="detail">
+              Detail
+            </div>
 
-<div class="container">
-  <div class="row">
-
-  <img class="slides" src="images/1.jpg">
-  <img class="slides" src="images/2.jpg">
-  <img class="slides" src="images/3.jpg">
-  <img class="slides" src="images/4.jpg">
-
-  <button class="btn pull-left">&#10094;</button>
-  <button class="btn pull-right">&#10095;</button>
-
+            <div class="howmany">
+              <div class="quantity-input">
+                <input class="minus btn" type="button" value="-">
+                <input class="input-text quantity text" value="3" size="4">
+                <input class="plus btn" type="button" value="+">
+              </div>
+            </div>
+            <div class="cancel">
+              Cancel
+            </div>
+            <div class="addcart">
+              Add to Cart!
+            </div>
+          </div>
+     </div>
+     <div class="card_back">
+          <i class="fa fa-check fa-4x"></i>
+          <p>Success!</p>
+     </div>
+  </div>  <!-- item wrapper end -->
 </div>
-</div>
 
-
-  <!-- start javascript -->
-  <script>
-
-  document.addEventListener("DOMContentLoaded", function() {
-
-    console.log( 'Документ загружен' );
-
-    var slideIndex = 1;
     
-    showDivs(slideIndex);
+ <script src="./js/app.js"></script>
 
-    document.getElementsByClassName("pull-left")[0].addEventListener('click', function(){
-        plusDivs(-1);
-      });
-    
-    document.getElementsByClassName("pull-right")[0].addEventListener('click', function(){
-        plusDivs(1);
-      });
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
+ <script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", ready);
+
+    function ready() {
+
+      let buy = document.querySelector('.buy');
+
+      buy.addEventListener('click', function () {
+        document.querySelector('.singleMember p').style.display = 'none';
+        document.querySelector('.singleMember .icon').style.display = 'none';
+        document.querySelector('.singleMember .buy').style.display = 'none';
+        document.querySelector('.singleMember .detail').style.display = 'block';
+        document.querySelector('.menu').style.top = '40%';
+        });
+
     }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("slides");
-      if (n > x.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
-         x[i].style.display = "none";  
-      }
-      x[slideIndex-1].style.display = "block";  
-    }
-  
-  });
-    
-  </script>
+   
+ 
+ </script>
 </body>
+
 </html>
