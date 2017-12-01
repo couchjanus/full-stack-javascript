@@ -58,7 +58,7 @@
                   <nav class="collapse navbar-collapse navigation" id="navbar-collapse-1" role="navigation">
                         <ul class="nav navbar-nav navbar-right ">
                             <li class="active"> <a href="#home" >Home </a></li>
-                            <li><a href="#" id="catalog">Catalog</a> </li>
+                            <li><a href="#" id="catalog" >Catalog</a> </li>
                             <li><a href="#about" >About Us </a> </li>
                             <li><a href="#blog" >Blog</a> </li>
                             <li><a href="#contact" >Contact Us</a> </li>
@@ -457,7 +457,6 @@
 
         <p class="go-to-cart"><a href="#">Go to cart page</a></p>
     </div> <!-- cd-cart -->
-
     <div class="mega-menu">
         <div class="mega-menu-top">
           <div class="mega-search">
@@ -501,35 +500,78 @@
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
 
-    <script src="./js/app.js"></script>
+  <script type="text/javascript">
 
 
-   <script type="text/javascript">
-   
+    function toggle_panel(panel, background_layer) {
 
-   
-   document.addEventListener("DOMContentLoaded", ready);
-
-    function ready() {
-      document.getElementById("cart-trigger").addEventListener('click', function () {
-            toggle_panel(document.getElementById("cart"), document.getElementById("shadow-layer"));
-        });
-
-      let mega = document.querySelector('.mega-menu');
-
-      catalog.addEventListener('click', function () {
-            mega.classList.add('active');
-        });
-
-      let close = document.querySelector('.close');
-        
-      close.addEventListener('click', function () {
-            mega.classList.remove('active');
-        });
-
+         if (panel.hasClass('speed-in')) {
+             panel.removeClass('speed-in');
+             background_layer.removeClass('is-visible');
+         } else {
+                panel.addClass('speed-in');
+                background_layer.addClass('is-visible');
+                }
     }
-   
-   </script>
+
+   $(function() {
+
+        const cart_trigger = $('#cart-trigger'),
+            cart = $('#cart'),
+            shadow_layer = $('#shadow-layer');
+
+        const close = $('.close');
+        const catalog = $('#catalog');
+        const mega = $('.mega-menu');
+
+        catalog.click(() => {
+            mega.addClass('active');
+        });
+
+        close.click(() => {
+            mega.removeClass('active');
+        });
+
+        cart_trigger.on('click', () => {
+            toggle_panel(cart, shadow_layer);
+        });
+
+        $('.buy').click(function() {
+          $('.singleMember p').slideUp();
+          $('.menu').css('top', '40%');
+
+          $('.singleMember .icon').css('display', 'none'); 
+          $('.singleMember .buy').css('display', 'none'); 
+          $('.singleMember .detail').css('display', 'block'); 
+          
+        });
+
+        $('.cancel').click(function() {
+          $('.singleMember p').slideDown();
+          $('.menu').css('top', '80%');
+          $('.singleMember .icon').css('display', 'block'); 
+          $('.singleMember .buy').css('display', 'block'); 
+          $('.singleMember .detail').css('display', 'none'); 
+        });
+
+        $('.addcart').click(function() {
+          var y = 180;
+          $('.contentItem').css({
+            'transform': 'rotateY(' + y + 'deg)'
+        });
+
+        $('.contentItem').delay(3000).queue(function() {
+          $(this).css({
+            'transform': 'rotateY(0deg)'
+          }).dequeue();
+          $('.singleMember p').slideDown();
+          $('.menu').css('top', '80%');
+          $('.icon').toggle();
+        });
+      });
+ });
+ 
+</script>
 
 </body>
 
