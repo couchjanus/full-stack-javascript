@@ -20,19 +20,19 @@
   
 </div>
 
-<script id="template-product-item" type="text/template">
-    <div class="singleMember" productId="{{id}}">
-          <p>{{name}}</p>
+<template id="template-product-item">
+    <div class="singleMember" productId="">
+          <p class="productName"></p>
           <div class="icon">
             <div class="icon_bg"></div>
             <i class="fa fa-shopping-cart fa-2x"></i>
           </div>
           <div class="image">
-            <img src="images/{{picture}}" alt="book" width="260" />
+            <img src="" alt="book" width="260" />
           </div>
           <div class="menu">
             <div class="price">
-              ${{price}}
+              
             </div>
             <div class="buy">
               Buy now!
@@ -60,22 +60,31 @@
           <i class="fa fa-check fa-4x"></i>
           <p>Success!</p>
      </div>
-</script>
-    
+
+</template> 
  <script src="./js/app.js"></script>
  <script src="./js/data.js"></script>
  <script type="text/javascript">
 
 document.addEventListener("DOMContentLoaded", () => {
-  let template = document.getElementById("template-product-item");
+
   let div = document.createElement('div');
   div.setAttribute('class', "contentItem text-center");
 
   for (let i=0; i<Object.keys(Data).length; i++){
-    let templateClone = template.cloneNode(); 
+    
     let divClone = div.cloneNode();
-    let templateHtml = template.innerHTML;
-    divClone.innerHTML = makeItem(templateHtml, Data[i]);
+   
+    let template = document.querySelector('template').content;
+        
+    template.querySelector('.productName').textContent = Data[i]["name"];
+    
+    template.querySelector('.price').textContent = Data[i]["price"]; 
+    
+    template.querySelector('img').setAttribute('src', 'images/'+Data[i]["picture"]); 
+  
+    divClone.append(document.importNode(template, true));
+    
     let buy = divClone.querySelector('.buy');
 
     buy.addEventListener('click', () => {
@@ -119,15 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
 });
-
-function makeItem(template, Data){
-  let Html = "";
-  Html += template.replace(/{{id}}/g, Data["id"])
-    .replace(/{{name}}/g, Data["name"])
-    .replace(/{{price}}/g, Data["price"])
-    .replace(/{{picture}}/g, Data["picture"]);
-    return Html;
-}
  </script>
 </body>
 
