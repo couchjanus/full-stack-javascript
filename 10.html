@@ -88,7 +88,8 @@
 </section>  <!-- Section product End -->
 
 <template id="template-product-item">
-    <div class="singleMember" productId="">
+    <div class="singleMember">
+      <span productId="" class="productId"></span>
           <p class="productName"></p>
           <div class="icon">
             <div class="icon_bg"></div>
@@ -225,37 +226,20 @@
 <!-- Footer Area End -->
 <div id="shadow-layer"></div>
 
-    <div id="cart">
+<div id="cart">
         <h2>Cart</h2>
         <ul class="cart-items">
-            <li>
-                <span class="qty">1x</span> <span class="product-name">Product Name</span>
-                <div class="price">$9.99</div>
-                <a href="#0" class="item-remove img-replace"></a>
-            </li>
 
-            <li>
-                <span class="qty">2x</span> Product Name
-                <div class="price">$19.98</div>
-                <a href="#" class="item-remove img-replace"></a>
-            </li>
-
-            <li>
-                <span class="qty">1x</span> Product Name
-                <div class="price">$9.99</div>
-                <a href="#" class="item-remove img-replace"></a>
-            </li>
         </ul> <!-- cd-cart-items -->
 
         <div class="cart-total">
-            <p>Total <span>$39.96</span></p>
+            <p>Total <span>$00.00</span></p>
         </div> <!-- cd-cart-total -->
 
         <a href="#" class="checkout-btn">Checkout</a>
 
         <p class="go-to-cart"><a href="#">Go to cart page</a></p>
     </div> <!-- cd-cart -->
-
     <div class="mega-menu">
         <div class="mega-menu-top">
           <div class="mega-search">
@@ -291,7 +275,19 @@
           </ul>
         </footer>
       </div>
-  
+
+  <script id="cartItem" type="text/template">
+        <li>
+        <span class="productInCart"></span>
+           <span class="qty item-quantities">
+            </span>
+            <div class="item-prices">
+            </div>
+            <a class="item-remove img-replace" href="#0"></a>
+        </li>
+  </script>
+
+
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
@@ -300,7 +296,15 @@
  <script src="./js/data.js"></script>
 
  <script type="text/javascript">
-
+  jQuery.extend( jQuery.easing, {
+  
+      easeInOutExpo: function (x, t, b, c, d) {
+            if (t==0) return b;
+            if (t==d) return b+c;
+            if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+            return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+        },
+  });
   function toggle_panel(panel, background_layer) {
 
          if (panel.hasClass('speed-in')) {
@@ -338,6 +342,8 @@
 
    for (var i=0; i<Object.keys(Data).length; i++){
      let $templateClone = $template.clone(true);
+
+     $templateClone.find(".productId").attr("productId", Data[i]["id"]);
 
      $templateClone.find('.productName').text(Data[i]["name"]);
     
@@ -392,7 +398,7 @@
                     'left': $('.shopping-cart').offset().left + 10,
                     'width': 75,
                     'height': 75
-            }, 1000, 'linear');
+            }, 1000, 'easeInOutExpo');
         
           }        
 
@@ -407,6 +413,13 @@
 
         $('.shopping-cart').fadeIn(500);
 
+        imgclone.animate({
+                'width': 0,
+                    'height': 0
+            }, function () {
+                $(this).detach()
+            });
+
         $('.contentItem').delay(3000).queue(function() {
           $(this).css({
             'transform': 'rotateY(0deg)'
@@ -415,10 +428,53 @@
           $('.menu').css('top', '80%');
           $('.icon').toggle();
         });
-        $('.singleMember .icon').css('display', 'block'); 
-        $('.singleMember .buy').css('display', 'block'); 
-        $('.singleMember .detail').css('display', 'none'); 
-      });
+
+
+    var $templateCart = $($('#cartItem').html());
+
+    var productId = $(this).parents(".singleMember").find(".productId").attr("productId");
+    
+    var items = $(".cart-items").children();
+    
+    var $matched = null,  quantity = 0, $p=0;
+
+    $matched = items.filter(function (index) {
+         var $this = $(this);
+        return $this.attr("id") === "product_"+productId;
+    });
+    
+    if ($matched.length) {
+        quantity = + parseInt($matched.find('.qty').text()) + parseInt($(this).parents(".singleMember").find(".quantity").val());
+        $p = $matched.find('.item-prices').text();
+        $matched.find('.qty').text(quantity);
+    } else {
+
+    $templateCart.attr('id', 'product_' + productId);
+        
+    $templateCart.find('.item-prices').attr('id', "price_"+productId);
+
+    $templateCart.find(".item-quantities").attr('id', "qty_"+productId);
+
+    $templateCart.find(".item-quantities").text($(this).parents(".singleMember").find(".quantity").val());
+        
+    $templateCart.find(".item-quantities").after(' '+$(this).parents(".singleMember").children(".productName").text()); 
+        
+    $templateCart.find('.item-prices').text($(this).parents(".singleMember").find(".price").text());
+
+    $(".cart-items").append($templateCart);
+    
+  }
+    $('.singleMember .icon').css('display', 'block'); 
+    $('.singleMember .buy').css('display', 'block'); 
+    $('.singleMember .detail').css('display', 'none'); 
+  });
+
+   $('body').on('click', '.cart-items .item-remove', function () {
+        var $this = $(this),
+        $item = $this.parents('li');
+        $item.remove();
+    });
+
 
     $(".plus").click(function() {
        var val = parseInt($(this).prev().attr('value'));

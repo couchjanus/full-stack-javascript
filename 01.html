@@ -1,35 +1,105 @@
  <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+    <!-- Basic Page Needs
+    ================================================== -->
       <meta charset="utf-8">
-      <link rel="icon" href="./favicon.ico">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Shopaholic Template</title>
-      <link href="./css/bootstrap.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
       
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      <link rel="icon" href="./favicon.ico">
+        <!-- Mobile Specific Metas
+    ================================================== -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <title>Shopaholic Template</title>
+
+      <!-- CSS
+      ================================================== -->
+
+      <!-- Bootstrap core CSS -->
+      <link href="./css/bootstrap.min.css" rel="stylesheet">
+      <!-- FontAwesome -->
+      <link rel="stylesheet" href="css/font-awesome.min.css"/>
+      
+      <!-- Custom styles for this template -->
+      {# <link rel="stylesheet" href="css/owl.carousel.css"/>
+      <link rel="stylesheet" href="css/owl.theme.css"/> #}
       <link href="./css/styles.css" rel="stylesheet">
     
       <link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
       <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500' rel='stylesheet' type='text/css'>
     </head>
 
-<body data-spy="scroll" data-target=".navbar-fixed-top">
+ <body data-spy="scroll" data-target=".navbar-fixed-top">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
+  <header id="header" class="navbar-fixed-top navbar-inverse video-menu" role="banner">
+    <div class="container">
+      <!-- <div class="row"> -->
+                 <div class="navbar-header ">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                                <img src="images/logo.png" alt="" class="img-responsive">
+                        </a>
+                 </div><!--Navbar header End-->
+                  <nav class="collapse navbar-collapse navigation" id="navbar-collapse-1" role="navigation">
+                        <ul class="nav navbar-nav navbar-right ">
+                            <li class="active"> <a href="#home" >Home </a></li>
+                            <li><a href="#" id="catalog">Catalog</a> </li>
+                            <li><a href="#about" >About Us </a> </li>
+                            <li><a href="#blog" >Blog</a> </li>
+                            <li><a href="#contact" >Contact Us</a> </li>
+                            <li id="cart-trigger" class=""><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                     </nav>
+    </div><!-- /.container-fluid -->
+  </header>
+<!-- product Start -->
+<section class="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="feature_header text-center">
+                    <h3 class="feature_title">Our <b>Cat Members</b></h3>
+                    <h4 class="feature_sub">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h4>
+                    <div class="divider"></div>
+                </div>
+            </div>  <!-- Col-md-12 End -->
 <div class="product-items">
-  <div class="contentItem text-center">
+  
+</div>
+
+
+</div>
+</div> <!-- Conatiner product end -->
+</section>  <!-- Section product End -->
+
+<template id="template-product-item">
     <div class="singleMember" productId="">
-          <p>Very&nbsp;Nice&nbsp;Cat</p>
+          <p class="productName"></p>
           <div class="icon">
             <div class="icon_bg"></div>
             <i class="fa fa-shopping-cart fa-2x"></i>
           </div>
           <div class="image">
-            <img src="images/1.jpg" alt="book" width="260" />
+            <img src="" alt="book" width="260" />
           </div>
           <div class="menu">
             <div class="price">
-              $9.99
+              
             </div>
             <div class="buy">
               Buy now!
@@ -41,7 +111,7 @@
             <div class="howmany">
               <div class="quantity-input">
                 <input class="minus btn" type="button" value="-">
-                <input class="input-text quantity text" value="3" size="4">
+                <input class="input-text quantity text" value="1" size="3">
                 <input class="plus btn" type="button" value="+">
               </div>
             </div>
@@ -57,15 +127,266 @@
           <i class="fa fa-check fa-4x"></i>
           <p>Success!</p>
      </div>
-  </div>  <!-- item wrapper end -->
-</div>
 
-    
+</template> 
+<div class="clearfix"></div>
+
+<!-- Footer Area Start -->
+
+<footer id="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Main Menu</h3>
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="#about">Home</a></li>
+                            <li><a href="#service">Service</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Useful Links</h3>
+                    <div class="footer_menu">
+                        <ul>
+                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#"> inventore natus ullam eum</a></li>
+                            <li><a href="#">consectetur adipisicing elit.</a></li>
+                            <li><a href="#">Frequently Asked Questions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Contact us</h3>
+                    <div class="footer_menu_contact">
+                        <ul>
+                            <li> <i class="fa fa-home"></i>
+                                <span> National Aviation University Kosmonavta KomarovaAve, 1 Kyiv </span></li>
+                            <li><i class="fa fa-globe"></i>
+                                <span> +099-12345678</span></li>
+                            <li><i class="fa fa-phone"></i>
+                                <span> info@gmail.com</span></li>
+                            <li><i class="fa fa-map-marker"></i>
+                            <span> www.my.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <h3 class="menu_head">Tags</h3>
+                    <div class="footer_menu tags">
+                        <a href="#"> Mice</a>
+                        <a href="#"> Cats</a>
+                        <a href="#"> Dogs</a>
+                        <a href="#"> Rabbits</a>
+                        <a href="#"> Crocodiles</a>
+                        <a href="#"> Chicks</a>
+                        <a href="#"> Dinosaurs</a>
+                        <a href="#"> Skunks</a>
+                        <a href="#"> Rats</a>
+                        <a href="#"> Crows</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_b">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer_bottom">
+                        <p class="text-block"> &copy; Copyright reserved to <span>Janus </span></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer_mid pull-right">
+                        <ul class="social-contact list-inline">
+                            <li> <a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li> <a href="#"><i class="fa fa-google-plus"></i> </a></li>
+                            <li><a href="#"> <i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"> <i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Area End -->
+<div id="shadow-layer"></div>
+
+    <div id="cart">
+        <h2>Cart</h2>
+        <ul class="cart-items">
+            <li>
+                <span class="qty">1x</span> <span class="product-name">Product Name</span>
+                <div class="price">$9.99</div>
+                <a href="#0" class="item-remove img-replace"></a>
+            </li>
+
+            <li>
+                <span class="qty">2x</span> Product Name
+                <div class="price">$19.98</div>
+                <a href="#" class="item-remove img-replace"></a>
+            </li>
+
+            <li>
+                <span class="qty">1x</span> Product Name
+                <div class="price">$9.99</div>
+                <a href="#" class="item-remove img-replace"></a>
+            </li>
+        </ul> <!-- cd-cart-items -->
+
+        <div class="cart-total">
+            <p>Total <span>$39.96</span></p>
+        </div> <!-- cd-cart-total -->
+
+        <a href="#" class="checkout-btn">Checkout</a>
+
+        <p class="go-to-cart"><a href="#">Go to cart page</a></p>
+    </div> <!-- cd-cart -->
+
+    <div class="mega-menu">
+        <div class="mega-menu-top">
+          <div class="mega-search">
+            <label for="mega-search">Search</label>
+            <input type="search" id="mega-search" placeholder="Search" />
+          </div>
+          <div class="close">
+            <span>&#10006;</span> 
+          </div>
+        </div>
+        <h3>Catalog</h3>
+        <ul class="nav themes">
+          <li><a href="#"> Mice</a></li>
+          <li><a href="#"> Cats</a></li>
+          <li><a href="#"> Dogs</a></li>
+          <li><a href="#"> Rabbits</a></li>
+          <li><a href="#"> Crocodiles</a></li>
+          <li><a href="#"> Chicks</a></li>
+          <li><a href="#"> Dinosaurs</a></li>
+          <li><a href="#"> Skunks</a></li>
+          <li><a href="#"> Rats</a></li>
+          <li><a href="#"> Crows</a></li>
+          
+        </ul>
+        <footer>
+          <div class="logo_footer">  
+          <img src="images/logo.png" class="logo">
+          </div>
+          <ul class="nav footer">
+            <li>Contact Us</li>
+            <li>About Us</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </footer>
+      </div>
+  
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+
  <script src="./js/app.js"></script>
+ <script src="./js/data.js"></script>
 
  <script type="text/javascript">
 
-    document.addEventListener("DOMContentLoaded", ready);
+  function toggle_panel(panel, background_layer) {
+
+         if (panel.hasClass('speed-in')) {
+             panel.removeClass('speed-in');
+             background_layer.removeClass('is-visible');
+         } else {
+                panel.addClass('speed-in');
+                background_layer.addClass('is-visible');
+                }
+    }
+
+   $(function() {
+
+        const cart_trigger = $('#cart-trigger'),
+            cart = $('#cart'),
+            shadow_layer = $('#shadow-layer');
+
+        const close = $('.close');
+        const catalog = $('#catalog');
+        const mega = $('.mega-menu');
+
+        catalog.click(() => {
+            mega.addClass('active');
+        });
+
+        close.click(() => {
+            mega.removeClass('active');
+        });
+
+        cart_trigger.on('click', () => {
+            toggle_panel(cart, shadow_layer);
+        });
+
+
+   for (var i=0; i<Object.keys(Data).length; i++){
+     var $template = $($('template').html());
+
+     $template.find('.productName').text(Data[i]["name"]);
+    
+     $template.find('.price').text(Data[i]["price"]);
+    
+     $template.find('img').attr('src', 'images/'+Data[i]["picture"]); 
+  
+     $("<div>").attr('class', "contentItem text-center").append($template).appendTo($(".product-items"));
+    // $('.js-source div').clone(true).appendTo('.product-items')
+        
+    }
+
+
+        $('.buy').click(function() {
+          $('.singleMember p').slideUp();
+          $('.menu').css('top', '40%');
+
+          $('.singleMember .icon').css('display', 'none'); 
+          $('.singleMember .buy').css('display', 'none'); 
+          $('.singleMember .detail').css('display', 'block'); 
+          
+        });
+
+        $('.cancel').click(function() {
+          $('.singleMember p').slideDown();
+          $('.menu').css('top', '80%');
+          $('.singleMember .icon').css('display', 'block'); 
+          $('.singleMember .buy').css('display', 'block'); 
+          $('.singleMember .detail').css('display', 'none'); 
+        });
+
+        $('.addcart').click(function() {
+          var y = 180;
+          $('.contentItem').css({
+            'transform': 'rotateY(' + y + 'deg)'
+        });
+
+        $('.contentItem').delay(3000).queue(function() {
+          $(this).css({
+            'transform': 'rotateY(0deg)'
+          }).dequeue();
+          $('.singleMember p').slideDown();
+          $('.menu').css('top', '80%');
+          $('.icon').toggle();
+        });
+        $('.singleMember .icon').css('display', 'block'); 
+        $('.singleMember .buy').css('display', 'block'); 
+        $('.singleMember .detail').css('display', 'none'); 
+      });
+ });
 
     
  </script>
