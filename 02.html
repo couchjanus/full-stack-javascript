@@ -129,6 +129,9 @@
      </div>
 
 </template> 
+
+
+
 <div class="clearfix"></div>
 
 <!-- Footer Area Start -->
@@ -228,27 +231,11 @@
     <div id="cart">
         <h2>Cart</h2>
         <ul class="cart-items">
-            <li>
-                <span class="qty">1x</span> <span class="product-name">Product Name</span>
-                <div class="price">$9.99</div>
-                <a href="#0" class="item-remove img-replace"></a>
-            </li>
 
-            <li>
-                <span class="qty">2x</span> Product Name
-                <div class="price">$19.98</div>
-                <a href="#" class="item-remove img-replace"></a>
-            </li>
-
-            <li>
-                <span class="qty">1x</span> Product Name
-                <div class="price">$9.99</div>
-                <a href="#" class="item-remove img-replace"></a>
-            </li>
         </ul> <!-- cd-cart-items -->
 
         <div class="cart-total">
-            <p>Total <span>$39.96</span></p>
+            <p>Total <span>$00.00</span></p>
         </div> <!-- cd-cart-total -->
 
         <a href="#" class="checkout-btn">Checkout</a>
@@ -291,6 +278,18 @@
           </ul>
         </footer>
       </div>
+
+  <template id="cartItem">
+    <li>
+        <span class="productInCart"></span>
+           <span class="qty item-quantities">
+            </span>
+            <div class="item-prices">
+            </div>
+            <a class="item-remove img-replace" href="#0"></a>
+        </li>
+  </template>
+
   
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -298,93 +297,121 @@
 
  <script src="./js/app.js"></script>
  <script src="./js/data.js"></script>
-
  <script type="text/javascript">
 
-  function toggle_panel(panel, background_layer) {
+document.addEventListener("DOMContentLoaded", () => {
 
-         if (panel.hasClass('speed-in')) {
-             panel.removeClass('speed-in');
-             background_layer.removeClass('is-visible');
-         } else {
-                panel.addClass('speed-in');
-                background_layer.addClass('is-visible');
-                }
-    }
-
-   $(function() {
-
-        const cart_trigger = $('#cart-trigger'),
-            cart = $('#cart'),
-            shadow_layer = $('#shadow-layer');
-
-        const close = $('.close');
-        const catalog = $('#catalog');
-        const mega = $('.mega-menu');
-
-        catalog.click(() => {
-            mega.addClass('active');
+  document.getElementById("cart-trigger").addEventListener('click', function () {
+            toggle_panel(document.getElementById("cart"), document.getElementById("shadow-layer"));
         });
 
-        close.click(() => {
-            mega.removeClass('active');
-        });
+  let mega = document.querySelector('.mega-menu');
 
-        cart_trigger.on('click', () => {
-            toggle_panel(cart, shadow_layer);
-        });
+  catalog.addEventListener('click', function () {
+       mega.classList.add('active');
+  });
 
-   var $template = $($('template').html());
-
-   for (var i=0; i<Object.keys(Data).length; i++){
-     let $templateClone = $template.clone(true);
-
-     $templateClone.find('.productName').text(Data[i]["name"]);
-    
-     $templateClone.find('.price').text(Data[i]["price"]);
-    
-     $templateClone.find('img').attr('src', 'images/'+Data[i]["picture"]); 
+  let close = document.querySelector('.close');
+        
+  close.addEventListener('click', function () {
+      mega.classList.remove('active');
+  });
   
-     $("<div>").attr('class', "contentItem text-center").clone(true).append($templateClone).appendTo($(".product-items"));
-    }
-        $('.buy').click(function() {
-          $('.singleMember p').slideUp();
-          $('.menu').css('top', '40%');
+  let div = document.createElement('div');
+  div.setAttribute('class', "contentItem text-center");
 
-          $('.singleMember .icon').css('display', 'none'); 
-          $('.singleMember .buy').css('display', 'none'); 
-          $('.singleMember .detail').css('display', 'block'); 
+  for (let i=0; i<Object.keys(Data).length; i++){
+    
+    let divClone = div.cloneNode();
+   
+    let template = document.querySelector('#template-product-item').content;
+        
+    template.querySelector('.productName').textContent = Data[i]["name"];
+    
+    template.querySelector('.singleMember').setAttribute('productId', Data[i]["id"]);
+
+    template.querySelector('.price').textContent = Data[i]["price"]; 
+    
+    template.querySelector('img').setAttribute('src', 'images/'+Data[i]["picture"]); 
+  
+    divClone.append(document.importNode(template, true));
+    
+    let buy = divClone.querySelector('.buy');
+
+    buy.addEventListener('click', () => {
+      divClone.querySelector('.singleMember p').style.display = 'none';
+      divClone.querySelector('.singleMember .icon').style.display = 'none';
+      divClone.querySelector('.singleMember .buy').style.display = 'none';
+      divClone.querySelector('.singleMember .detail').style.display = 'block';
+      divClone.querySelector('.menu').style.top = '40%';
+    });
+
+    let cancel = divClone.querySelector('.cancel');
+
+    cancel.addEventListener('click', () => {
+      divClone.querySelector('.singleMember p').style.display = 'block';
+      divClone.querySelector('.singleMember .icon').style.display = 'block';
+      divClone.querySelector('.singleMember .buy').style.display = 'block';
+      divClone.querySelector('.singleMember .detail').style.display = 'none';
+      divClone.querySelector('.menu').style.top = '80%';
+    });
+    
+
+    let addcart = divClone.querySelector('.addcart');
+
+    addcart.addEventListener('click', function() {
+      
+      let template = document.querySelector('#cartItem').content;
+      let productId = this.parentNode.parentNode.getAttribute("productId");
+      template.querySelector('li').setAttribute('id', 'product_' + productId);
+      let quantity = this.parentNode.querySelectorAll(":scope > .howmany .quantity-input .quantity");
+      template.querySelector("span.item-quantities").textContent = quantity[0].getAttribute('value');
+      template.querySelector('.item-prices').setAttribute('id', "price_"+productId);
+      template.querySelector(".item-quantities").append(' '+this.parentNode.parentNode.querySelectorAll(":scope > .productName")[0].textContent); 
+      template.querySelector('.item-prices').textContent = this.parentNode.querySelectorAll(":scope > .price")[0].textContent;
+
+
+      document.querySelector('.cart-items').append(document.importNode(template, true));
+      
+      let promise = new Promise((resolve, reject) => {
+        resolve();
+        divClone.style.transform = 'rotateY(180deg)';
+      });
+
+      promise.then(() => {
+          setTimeout(() => {
+            divClone.style.transform = 'rotateY(0deg)';
+            divClone.querySelector('.singleMember p').style.display = 'block';
+            divClone.querySelector('.singleMember .icon').style.display = 'block';
+            divClone.querySelector('.singleMember .buy').style.display = 'block';
+            divClone.querySelector('.singleMember .detail').style.display = 'none';
+            divClone.querySelector('.menu').style.top = '80%';
+          }, 2000);
+        })
+        .then(() => {
           
         });
-
-        $('.cancel').click(function() {
-          $('.singleMember p').slideDown();
-          $('.menu').css('top', '80%');
-          $('.singleMember .icon').css('display', 'block'); 
-          $('.singleMember .buy').css('display', 'block'); 
-          $('.singleMember .detail').css('display', 'none'); 
-        });
-
-        $('.addcart').click(function() {
-          var y = 180;
-          $('.contentItem').css({
-            'transform': 'rotateY(' + y + 'deg)'
-        });
-
-        $('.contentItem').delay(3000).queue(function() {
-          $(this).css({
-            'transform': 'rotateY(0deg)'
-          }).dequeue();
-          $('.singleMember p').slideDown();
-          $('.menu').css('top', '80%');
-          $('.icon').toggle();
-        });
-        $('.singleMember .icon').css('display', 'block'); 
-        $('.singleMember .buy').css('display', 'block'); 
-        $('.singleMember .detail').css('display', 'none'); 
       });
- });
-    
+
+    document.querySelector('.product-items').appendChild(divClone);
+
+  }
+
+   let plus = document.getElementsByClassName('plus');
+     for (let i=0;i<plus.length; i++) {
+         plus[i].addEventListener('click', function(e) {
+         let val = parseInt(e.target.previousElementSibling.getAttribute('value'));
+         e.target.previousElementSibling.setAttribute('value', val+1);
+         });
+     }
+     let minus = document.getElementsByClassName('minus');
+      for (let i=0;i<minus.length; i++) {
+          minus[i].addEventListener('click', function(e) {
+          let val = parseInt(e.target.nextElementSibling.getAttribute('value'));
+          e.target.nextElementSibling.setAttribute('value', val-1);
+          });
+     }
+});
  </script>
 </body>
 
