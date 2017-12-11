@@ -321,6 +321,19 @@ function updateTotal() {
       });
 
       $cartTotal.text('$' + parseFloat(Math.round(total * 100) / 100).toFixed(2));
+
+      if (total === 0 ){
+        
+        $('.shopping-cart').fadeOut(500, function() {
+                $(this).css({
+                    'backgroundColor':'',
+                    'borderRadius': '0%',
+                    'transform': 'scale(1, 1)'
+                    });
+            });
+      
+        $('.shopping-cart').fadeIn(500);        
+      }
   }
 
 

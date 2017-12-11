@@ -232,7 +232,7 @@
 
         </ul> <!-- cd-cart-items -->
 
-        <div class="cart-total">
+        <div class="cart-total" id="cart_total">
             <p>Total <span>$00.00</span></p>
         </div> <!-- cd-cart-total -->
 
@@ -296,27 +296,69 @@
  <script src="./js/data.js"></script>
 
  <script type="text/javascript">
-  jQuery.extend( jQuery.easing, {
-  
-      easeInOutExpo: function (x, t, b, c, d) {
-            if (t==0) return b;
-            if (t==d) return b+c;
-            if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
-            return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
-        },
-  });
-  function toggle_panel(panel, background_layer) {
 
-         if (panel.hasClass('speed-in')) {
-             panel.removeClass('speed-in');
-             background_layer.removeClass('is-visible');
-         } else {
-                panel.addClass('speed-in');
-                background_layer.addClass('is-visible');
-                }
+ var shoppingCart = [];
+
+
+ function saveCart() {
+  
+    if ( window.localStorage)
+      {
+        localStorage.shoppingCart = JSON.stringify(shoppingCart);
+      }
+  }
+
+function updateTotal() {
+      var quantities = 0,
+      total = 0,
+      
+      $cartTotal = $('#cart_total span'),
+      items = $('.cart-items').children();
+
+      items.each(function (index, item) {
+          var $item = $(item);
+          total += parseFloat($item.find('.item-prices').text());
+      });
+
+      $cartTotal.text('$' + parseFloat(Math.round(total * 100) / 100).toFixed(2));
+  }
+
+
+
+  function showCart(){
+
+    if (shoppingCart.length == 0) {
+      console.log("Your Shopping Cart is Empty!");
+      return;
     }
 
-   $(function() {
+    $(".cart-items").empty();
+
+    for (var i in shoppingCart) {
+    
+      var $templateCart = $($('#cartItem').html());
+      var item = shoppingCart[i];
+      $templateCart.attr('product_id', item.Id);
+      $templateCart.find(".item-quantities").text(item.Quantity);
+      $templateCart.find(".item-quantities").after(' '+ item.Product); 
+      $templateCart.find('.item-price').text(item.Price);
+      $templateCart.find('.item-prices').text(item.Quantity * item.Price);
+      $templateCart.find('span.qty').attr('style', 'background-image:'+ 'url('+item.Picture+')');
+      $(".cart-items").append($templateCart);
+    }
+    updateTotal();
+  }
+
+  
+ $(function() {
+
+
+    if (localStorage.shoppingCart){
+
+      shoppingCart = JSON.parse(localStorage.shoppingCart);
+    
+    }
+
 
         const cart_trigger = $('#cart-trigger'),
             cart = $('#cart'),
@@ -335,6 +377,7 @@
         });
 
         cart_trigger.on('click', () => {
+            showCart();
             toggle_panel(cart, shadow_layer);
         });
 
@@ -354,29 +397,46 @@
      $("<div>").attr('class', "contentItem text-center").clone(true).append($templateClone).appendTo($(".product-items"));
     }
         $('.buy').click(function() {
-          $('.singleMember p').slideUp();
-          $('.menu').css('top', '40%');
+          $(this).parents('.singleMember').find('p').slideUp();
+          $(this).parents('.singleMember').find('.menu').css('top', '40%');
 
-          $('.singleMember .icon').css('display', 'none'); 
-          $('.singleMember .buy').css('display', 'none'); 
-          $('.singleMember .detail').css('display', 'block'); 
+          $(this).parents('.singleMember').find('.icon').css('display', 'none'); 
+          $(this).parents('.singleMember').find('.buy').css('display', 'none'); 
+          $(this).parents('.singleMember').find('.detail').css('display', 'block'); 
           
         });
 
         $('.cancel').click(function() {
-          $('.singleMember p').slideDown();
-          $('.menu').css('top', '80%');
-          $('.singleMember .icon').css('display', 'block'); 
-          $('.singleMember .buy').css('display', 'block'); 
-          $('.singleMember .detail').css('display', 'none'); 
+          $(this).parents('.singleMember').find('p').slideDown();
+          $(this).parents('.singleMember').find('.menu').css('top', '80%');
+          $(this).parents('.singleMember').find('.icon').css('display', 'block'); 
+          $(this).parents('.singleMember').find('.buy').css('display', 'block'); 
+          $(this).parents('.singleMember').find('.detail').css('display', 'none'); 
         });
 
-        $('.addcart').click(function() {
-          $('.contentItem').css({
+
+  $('.addcart').click(function() {
+
+          let id = $(this).parents('.singleMember').find('.productId').attr("productId");
+          let price = $(this).parents(".singleMember").find(".price").text();
+          let name = $(this).parents(".singleMember").children(".productName").text();
+          let quantity = $(this).parents(".singleMember").find(".quantity").val();
+          let picture = $(this).parents(".singleMember").find("img").attr('src');
+
+          let item = { 
+                Id: id, 
+                Product: name,  
+                Price: price, 
+                Quantity: quantity, 
+                Picture: picture 
+          }; 
+
+      var effects = function($this){
+         $this.parents('.contentItem').css({
             'transform': 'rotateY(180deg)'
         });
 
-        var imgtodrag = $(this).parents('.singleMember').find("img").eq(0);
+        var imgtodrag = $this.parents('.singleMember').find("img").eq(0);
         
         if (imgtodrag) {
             var imgclone = imgtodrag.clone()
@@ -415,7 +475,7 @@
 
         imgclone.animate({
                 'width': 0,
-                    'height': 0
+                'height': 0
             }, function () {
                 $(this).detach()
             });
@@ -429,45 +489,51 @@
           $('.icon').toggle();
         });
 
-
-    var $templateCart = $($('#cartItem').html());
-
-    var productId = $(this).parents(".singleMember").find(".productId").attr("productId");
-    
-    var items = $(".cart-items").children();
-    
-    var $matched = null,  quantity = 0, $p=0;
-
-    $matched = items.filter(function (index) {
-         var $this = $(this);
-        return $this.attr("id") === "product_"+productId;
-    });
-    
-    if ($matched.length) {
-        quantity = + parseInt($matched.find('.qty').text()) + parseInt($(this).parents(".singleMember").find(".quantity").val());
-        $p = $matched.find('.item-prices').text();
-        $matched.find('.qty').text(quantity);
-    } else {
-
-    $templateCart.attr('id', 'product_' + productId);
-        
-    $templateCart.find('.item-prices').attr('id', "price_"+productId);
-
-    $templateCart.find(".item-quantities").attr('id', "qty_"+productId);
-
-    $templateCart.find(".item-quantities").text($(this).parents(".singleMember").find(".quantity").val());
-        
-    $templateCart.find(".item-quantities").after(' '+$(this).parents(".singleMember").children(".productName").text()); 
-        
-    $templateCart.find('.item-prices').text($(this).parents(".singleMember").find(".price").text());
-
-    $(".cart-items").append($templateCart);
-    
-  }
+  
     $('.singleMember .icon').css('display', 'block'); 
     $('.singleMember .buy').css('display', 'block'); 
     $('.singleMember .detail').css('display', 'none'); 
-  });
+    }
+          
+    if (shoppingCart.length !== 0) {
+            
+            for (let i in shoppingCart) {
+              if(shoppingCart[i].Product == name)
+                {
+                 shoppingCart[i].Quantity = parseInt(shoppingCart[i].Quantity) + parseInt(quantity);
+                 effects($(this));
+                 return;
+                }
+             }
+      
+      shoppingCart.push(item);    
+      effects($(this));
+    }
+         
+    else{
+
+       shoppingCart.push(item);
+    
+    }
+
+    effects($(this));
+
+    saveCart();
+
+    });
+    
+   $('body').on('click', '.cart-items .item-remove', function () {
+      var $this = $(this);
+      var index = $this.parent().attr("product_id");
+
+      shoppingCart.splice(shoppingCart.indexOf(shoppingCart.find(x => x.Id === index)),1); 
+      
+      var $item = $this.parents('li');
+      $item.remove();
+      saveCart();
+      updateTotal();
+    });
+     
 
     $(".plus").click(function() {
        var val = parseInt($(this).prev().attr('value'));
