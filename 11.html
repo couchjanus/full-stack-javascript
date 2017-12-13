@@ -293,9 +293,23 @@
   <script src="./js/bootstrap.min.js"></script>
 
  <script src="./js/app.js"></script>
- <script src="./js/data.js"></script>
 
  <script type="text/javascript">
+
+  var Data = [];
+
+  var url = 'https://api.myjson.com/bins/ex0b3';
+
+    $.ajax({
+      url: url,
+      method: 'GET'
+    }).then(
+      function(json_data) {
+
+        console.log(json_data);
+        
+        for(var i in json_data)
+                Data.push(json_data[i]);
 
  var shoppingCart = [];
 
@@ -566,7 +580,9 @@ function updateTotal() {
        $(this).next().attr('value', val-1);
        });
  });
-    
+
+ });
+
  </script>
 </body>
 
